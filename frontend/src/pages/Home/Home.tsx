@@ -7,10 +7,14 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 
 export function HomePage() {
-  const { data, loading } = useQuery<{ countries: Country[] }>(COUNTRIES);
+  const { data, loading, error } = useQuery<{ countries: Country[] }>(COUNTRIES);
 
   if (loading) {
     return <p>Loading countries ...</p>
+  }
+
+  if(error) {
+    alert(error.message);
   }
   
   return (
