@@ -13,7 +13,7 @@ export default function Form() {
     ]
   });
 
-  const { data } = useQuery<{ continents: Continent[] }>(CONTINENTS);
+  const { data, error } = useQuery<{ continents: Continent[] }>(CONTINENTS);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,6 +33,10 @@ export default function Form() {
     addCountry({ variables: { data } })
       .then(() => form.reset())
       .catch((err) => alert(`Check your inputs fields, err:  ${err}`));
+  }
+
+  if (error) {
+    alert(error.message)
   }
 
   return (
