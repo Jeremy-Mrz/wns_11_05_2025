@@ -11,7 +11,7 @@
   }
 }
 
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 1015px) {
   .country-list {
     grid-template-columns: repeat(3, 100px);
   }

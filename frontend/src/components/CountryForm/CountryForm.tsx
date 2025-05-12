@@ -1,7 +1,9 @@
 import type { FormEvent } from "react";
-import { useMutation } from "@apollo/client";
-import { ADD_COUNTRY, COUNTRIES } from "../../api/example";
+import { useMutation, useQuery } from "@apollo/client";
+import { ADD_COUNTRY, CONTINENTS, COUNTRIES } from "../../api/example";
 import "./CountryForm.css";
+import type { Continent } from "../../utils/types";
+import { basicFormValidation } from "../../utils/helpers";
 
 export default function Form() {
 
@@ -11,14 +13,30 @@ export default function Form() {
     ]
   });
 
+  const { data, loading } = useQuery<{ continents: Continent[] }>(CONTINENTS);
+
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
+    const missingFields = basicFormValidation(data, ['name', 'emoji', 'code']);
+    if (missingFields.length) {
+      const fields = missingFields.join(' ');
+      return alert(`Those fields must be completed: ${fields}`);
+    }
+    if (data['continent']) {
+      (data['continent'] as any) = { id: Number(data['continent']) };
+    } else {
+      delete data['continent'];
+    }
     addCountry({ variables: { data } })
       .then(() => form.reset())
       .catch((err) => console.log(`Error adding a country ${err}`));
+  }
+
+  if (loading) {
+    return <p>Loading countries ...</p>
   }
 
   return (
@@ -26,16 +44,22 @@ export default function Form() {
       <form onSubmit={onSubmit}>
         <div>
           <label htmlFor="name">Name</label>
-          <input type="text" name="name" id="name" required />
+          <input type="text" name="name" id="name" required/>
         </div>
         <div>
           <label htmlFor="emoji">Emoji</label>
-          <input type="text" name="emoji" id="emoji" required />
+          <input type="text" name="emoji" id="emoji" required/>
         </div>
         <div>
           <label htmlFor="code">Code</label>
-          <input type="text" name="code" id="code" required />
+          <input type="text" name="code" id="code" required/>
         </div>
+        <select name="continent" id="continent">
+          <option value="">-- Select Continent --</option>
+          {data?.continents.map((continent) => {
+            return <option key={continent.id} value={continent.id}>{continent.name}</option>
+          })}
+        </select>
         <button type="submit">Add</button>
       </form>
     </section>

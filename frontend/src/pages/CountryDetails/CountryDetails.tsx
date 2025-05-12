@@ -21,7 +21,7 @@ export default function CountryDetails() {
     <section className="country-details">
       <h1 aria-label={`The flag of ${data?.country.name}`}>{data?.country.emoji}</h1>
       <p>Name: {data?.country.name} ({data?.country.code})</p>
-      <p>Continent: {data?.country.continent ? data?.country.continent : "Non renseigné"}</p>
+      <p>Continent: {data?.country.continent ? data?.country.continent.name : "Non renseigné"}</p>
     </section>
   )
 }

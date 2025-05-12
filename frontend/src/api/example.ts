@@ -10,6 +10,7 @@ export const COUNTRIES = gql`#graphql
     }
   }
 `
+
 export const ADD_COUNTRY = gql`#graphql
   mutation Country($data: NewCountryInput!) {
     addCountry(data: $data) {
@@ -25,6 +26,18 @@ export const COUNTRY = gql`#graphql
       name
       emoji
       code
+      continent {
+        name
+      }
+    }
+  }
+`
+
+export const CONTINENTS = gql`#graphql
+  query Continents {
+    continents {
+      id
+      name
     }
   }
 `

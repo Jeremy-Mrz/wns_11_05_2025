@@ -3,5 +3,10 @@ export type Country = {
   name: string;
   emoji: string;
   code: string;
-  continent?: string;
+  continent?: Continent;
+}
+
+export type Continent = {
+  id: number;
+  name: string;
 }

@@ -19,6 +19,10 @@
       height: 50px;
       border-radius: 4px;
     }
+
+    button:active {
+      transform: scale(0.98);
+    }
   }
 
   div{
@@ -28,7 +32,7 @@
   }
 }
 
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 1015px) {
   .country-form {
     form{
       width: 90%;
