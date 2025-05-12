@@ -32,7 +32,7 @@ export default function Form() {
     }
     addCountry({ variables: { data } })
       .then(() => form.reset())
-      .catch((err) => console.log(`Error adding a country ${err}`));
+      .catch((err) => alert(`Check your inputs fields, err:  ${err}`));
   }
 
   return (
@@ -40,15 +40,15 @@ export default function Form() {
       <form onSubmit={onSubmit}>
         <div>
           <label htmlFor="name">Name</label>
-          <input type="text" name="name" id="name" required/>
+          <input type="text" name="name" id="name" required />
         </div>
         <div>
           <label htmlFor="emoji">Emoji</label>
-          <input type="text" name="emoji" id="emoji" required/>
+          <input type="text" name="emoji" id="emoji" required />
         </div>
         <div>
           <label htmlFor="code">Code</label>
-          <input type="text" name="code" id="code" required/>
+          <input type="text" name="code" id="code" required />
         </div>
         <select name="continent" id="continent">
           <option value="">-- Select Continent --</option>
