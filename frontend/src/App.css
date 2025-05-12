@@ -13,3 +13,8 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: #f5f5f5;
 }
+
+:root {
+  --wild-pink: rgba(223, 48, 104, 1);
+  --border: rgba(0, 0, 0, 0.2);
+}

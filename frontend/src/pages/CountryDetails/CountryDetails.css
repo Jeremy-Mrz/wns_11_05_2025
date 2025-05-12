@@ -1,0 +1,15 @@
+.country-details {
+  margin: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  p, h1{
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 150px;
+  }
+}

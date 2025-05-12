@@ -1,0 +1,13 @@
+.country-card {
+  border: solid 1px var(--border);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+
+  p{
+    margin: 0;
+  }
+}
