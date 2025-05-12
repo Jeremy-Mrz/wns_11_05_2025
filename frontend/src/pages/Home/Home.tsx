@@ -7,8 +7,12 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 
 export function HomePage() {
-  const { data } = useQuery<{ countries: Country[] }>(COUNTRIES);
+  const { data, loading } = useQuery<{ countries: Country[] }>(COUNTRIES);
 
+  if (loading) {
+    return <p>Loading countries ...</p>
+  }
+  
   return (
     <>
       <Form />
